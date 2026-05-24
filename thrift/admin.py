@@ -1,3 +1,36 @@
 from django.contrib import admin
+from .models import User, Address
+from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
+@admin.register(User)
+class CustomserAdmin(UserAdmin):
+    model = User
+    #UserAdmin ka main benefit passwrod hashinbg and all handle krleta hai
+
+    list_display = ('email', 'first_name', 'last_name',  'phone_number', 'is_staff')
+    search_fields = ('email', 'first_name', 'last_name',  'phone_number')
+    ordering = ('email',)
+
+    # when user already created
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'phone_number')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Important dates', {'fields': ('last_login', 'date_joined')}),
+    )
+
+    # when new user is craeted ythis form is loaded
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'phone_number', 'password1', 'password2'),
+        }),
+    )
+
+
+@admin.register(Address)
+class AddressAdmin(admin.ModelAdmin):
+    list_display = ('user', 'address_type', 'custom_label', 'full_name', 'city', 'state', 'pincode', 'is_default')
+    list_filter = ('address_type', 'city', 'state', 'is_default')
+    search_fields = ('user__email', 'full_name', 'phone_number', 'city', 'pincode')
