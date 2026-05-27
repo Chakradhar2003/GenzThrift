@@ -1,0 +1,143 @@
+{% extends "../base.html" %}
+
+{% block main_body %}
+
+<style>
+    .login-btn {
+        background-color: #C5A992;
+        border: none;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .login-btn:hover {
+        background-color: #a8856a;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .password-wrapper {
+        position: relative;
+    }
+
+    .password-input {
+        padding-right: 45px;
+    }
+
+    .toggle-password {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #6c757d;
+        z-index: 10;
+    }
+
+    .is-invalid {
+      background-image: none !important;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+
+            <div class="card shadow p-4">
+                <h2 class="text-center mb-4">Log In</h2>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+
+                        <input
+                            type="email"
+                            name="username"
+                            class="form-control {% if form.non_field_errors %}is-invalid{% endif %}"
+                            placeholder="Enter email"
+                            value="{{ form.username.value|default:'' }}"
+                            required
+                        >
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="form-control password-input {% if form.non_field_errors %}is-invalid{% endif %}"
+                                placeholder="Enter password"
+                                required
+                            >
+
+                            <span
+                                class="toggle-password"
+                                onclick="togglePassword()"
+                            >
+                                👁
+                            </span>
+
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn w-100 login-btn">
+                        Log In
+                    </button>
+
+                    <div class="text-center mt-3">
+                        <p class="mb-1 text-muted">
+                            New here?
+                        </p>
+
+                        <a href="/accounts/signup">
+                            Create an Account
+                        </a>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <a href="{% url 'password_reset' %}">
+                            Forgot Password?
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function togglePassword() {
+
+        const passwordInput =
+            document.getElementById("password");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+        }
+        else {
+            passwordInput.type = "password";
+        }
+    }
+</script>
+
+{% endblock %}

@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse
 
 # Create your views here.
 def home(request):
-    return render(request, 'thrift/base.html')
+    return render(request, 'thrift/home.html')
 
 def contact(request):
     return HttpResponse("This is contact")

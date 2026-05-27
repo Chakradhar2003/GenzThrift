@@ -2442,3 +2442,29 @@ footer#footer {
     width: 100%;
   }
 }
+button.btn.logout-btn {
+  background: #C5A992 !important;
+  border: 1px solid #C5A992 !important;
+  color: #fff !important;
+
+  padding: 5px 12px !important;
+  height: auto !important;
+  margin: 0 !important;
+
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  line-height: normal !important;
+
+  border-radius: 4px !important;
+  transition: all 0.3s ease !important;
+}
+
+button.btn.logout-btn:hover {
+  background: #a8856a !important;
+  border-color: #a8856a !important;
+  color: #fff !important;
+
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}

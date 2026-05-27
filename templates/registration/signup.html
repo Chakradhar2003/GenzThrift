@@ -1,0 +1,232 @@
+{% extends "../base.html" %}
+
+{% block main_body %}
+
+<style>
+    .signup-btn {
+        background-color: #C5A992;
+        border: none;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .signup-btn:hover {
+        background-color: #a8856a;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .password-wrapper {
+        position: relative;
+    }
+
+    .toggle-password {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #6c757d;
+        z-index: 10;
+    }
+
+    .password-input {
+        padding-right: 45px;
+    }
+
+    .is-invalid {
+        background-image: none !important;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+
+            <div class="card shadow p-4">
+                <h2 class="text-center mb-4">Sign Up</h2>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <!-- First Name -->
+                    <div class="mb-3">
+                        <label class="form-label">First Name</label>
+
+                        <input
+                            type="text"
+                            name="first_name"
+                            class="form-control {% if form.first_name.errors %}is-invalid{% endif %}"
+                            placeholder="Enter first name"
+                            value="{{ form.first_name.value|default:'' }}"
+                            required
+                        >
+
+                        {% if form.first_name.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.first_name.errors.0 }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="mb-3">
+                        <label class="form-label">Last Name</label>
+
+                        <input
+                            type="text"
+                            name="last_name"
+                            class="form-control {% if form.last_name.errors %}is-invalid{% endif %}"
+                            placeholder="Enter last name"
+                            value="{{ form.last_name.value|default:'' }}"
+                            required
+                        >
+
+                        {% if form.last_name.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.last_name.errors.0 }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+                            placeholder="Enter email"
+                            value="{{ form.email.value|default:'' }}"
+                            required
+                        >
+
+                        {% if form.email.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.email.errors.0 }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="mb-3">
+                        <label class="form-label">Phone Number</label>
+
+                        <input
+                            type="text"
+                            name="phone_number"
+                            class="form-control {% if form.phone_number.errors %}is-invalid{% endif %}"
+                            placeholder="Enter phone number"
+                            value="{{ form.phone_number.value|default:'' }}"
+                            required
+                        >
+
+                        {% if form.phone_number.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.phone_number.errors.0 }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="password1"
+                                name="password1"
+                                class="form-control password-input {% if form.password1.errors %}is-invalid{% endif %}"
+                                placeholder="Enter password"
+                                required
+                            >
+
+                            <span
+                                class="toggle-password"
+                                onclick="togglePassword('password1')"
+                            >
+                                👁
+                            </span>
+
+                        </div>
+
+                        {% if form.password1.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ form.password1.errors.0 }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="mb-3">
+                        <label class="form-label">Confirm Password</label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="password2"
+                                name="password2"
+                                class="form-control password-input {% if form.password2.errors %}is-invalid{% endif %}"
+                                placeholder="Confirm password"
+                                required
+                            >
+
+                            <span
+                                class="toggle-password"
+                                onclick="togglePassword('password2')"
+                            >
+                                👁
+                            </span>
+
+                        </div>
+
+                        {% if form.password2.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ form.password2.errors.0 }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="btn w-100 signup-btn">
+                        Sign Up
+                    </button>
+
+                    <div class="text-center mt-3">
+                        <p class="mb-1 text-muted">
+                            Already have an account?
+                        </p>
+
+                        <a href="{% url 'login' %}">
+                            Log In
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function togglePassword(id) {
+
+        const input =
+            document.getElementById(id);
+
+        if (input.type === "password") {
+            input.type = "text";
+        }
+        else {
+            input.type = "password";
+        }
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,484 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block main_body %}
+<section id="billboard">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<button class="prev slick-arrow">
+					<i class="icon icon-arrow-left"></i>
+				</button>
+
+				<div class="main-slider pattern-overlay">
+					<div class="slider-item">
+						<div class="banner-content">
+							<h2 class="banner-title">Life of the Wild</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero
+								ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis
+								urna, a eu.</p>
+							<div class="btn-wrap">
+								<a href="#" class="btn btn-outline-accent btn-accent-arrow">Read More<i
+										class="icon icon-ns-arrow-right"></i></a>
+							</div>
+						</div><!--banner-content-->
+						<img src="{% static 'thrift/images/main-banner1.jpg' %}" alt="banner" class="banner-image">
+					</div><!--slider-item-->
+
+					<div class="slider-item">
+						<div class="banner-content">
+							<h2 class="banner-title">Birds gonna be Happy</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero
+								ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis
+								urna, a eu.</p>
+							<div class="btn-wrap">
+								<a href="#" class="btn btn-outline-accent btn-accent-arrow">Read More<i
+										class="icon icon-ns-arrow-right"></i></a>
+							</div>
+						</div><!--banner-content-->
+						<img src="{% static 'thrift/images/main-banner2.jpg' %}" alt="banner" class="banner-image">
+					</div><!--slider-item-->
+
+				</div><!--slider-->
+
+				<button class="next slick-arrow">
+					<i class="icon icon-arrow-right"></i>
+				</button>
+
+			</div>
+		</div>
+	</div>
+
+</section>
+
+
+<section id="quotation" class="align-center pb-5 mb-5">
+	<div class="inner-content">
+		<h2 class="section-title divider">Quote of the day</h2>
+		<blockquote data-aos="fade-up">
+			<q>“The more that you read, the more things you will know. The more that you learn, the more places
+				you’ll go.”</q>
+			<div class="author-name">Dr. Seuss</div>
+		</blockquote>
+	</div>
+</section>
+
+<section id="special-offer" class="bookshelf pb-5 mb-5">
+
+	<div class="section-header align-center">
+		<h2 class="section-title">For the sneaky head</h2>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="inner-content">
+				<div class="product-list" data-aos="fade-up">
+					<div class="grid product-grid">
+						<div class="product-item">
+							<figure class="product-style">
+								<img src="{% static 'thrift/images/product-item5.jpg' %}" alt="Books" class="product-item">
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+									Cart</button>
+							</figure>
+							<figcaption>
+								<h3>Simple way of piece life</h3>
+								<span>Armor Ramsey</span>
+								<div class="item-price">
+									<span class="prev-price">$ 50.00</span>$ 40.00
+								</div>
+							</figcaption>
+						</div>
+
+						<div class="product-item">
+							<figure class="product-style">
+								<img src="{% static 'thrift/images/product-item6.jpg' %}" alt="Books" class="product-item">
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+									Cart</button>
+							</figure>
+							<figcaption>
+								<h3>Great travel at desert</h3>
+								<span>Sanchit Howdy</span>
+								<div class="item-price">
+									<span class="prev-price">$ 30.00</span>$ 38.00
+								</div>
+							</figcaption>
+						</div>
+
+						<div class="product-item">
+							<figure class="product-style">
+								<img src="{% static 'thrift/images/product-item7.jpg' %}" alt="Books" class="product-item">
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+									Cart</button>
+							</figure>
+							<figcaption>
+								<h3>The lady beauty Scarlett</h3>
+								<span>Arthur Doyle</span>
+								<div class="item-price">
+									<span class="prev-price">$ 35.00</span>$ 45.00
+								</div>
+							</figcaption>
+						</div>
+
+						<div class="product-item">
+							<figure class="product-style">
+								<img src="{% static 'thrift/images/product-item8.jpg' %}" alt="Books" class="product-item">
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+									Cart</button>
+							</figure>
+							<figcaption>
+								<h3>Once upon a time</h3>
+								<span>Klien Marry</span>
+								<div class="item-price">
+									<span class="prev-price">$ 25.00</span>$ 35.00
+								</div>
+							</figcaption>
+						</div>
+
+						<div class="product-item">
+							<figure class="product-style">
+								<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="Books" class="product-item">
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+									Cart</button>
+							</figure>
+							<figcaption>
+								<h3>Simple way of piece life</h3>
+								<span>Armor Ramsey</span>
+								<div class="item-price">$ 40.00</div>
+							</figcaption>
+						</div>
+					</div><!--grid-->
+				</div>
+			</div><!--inner-content-->
+		</div>
+	</div>
+</section>
+
+<section id="special-offer" class="bookshelf pb-5 mb-5">
+
+	<div class="section-header align-center">
+		<h2 class="section-title">Best Fits</h2>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="inner-content">
+				<div class="product-list" data-aos="fade-up">
+					<div class="grid product-grid">
+						<div class="product-item">
+							<figure class="product-style">
+								<img src="{% static 'thrift/images/product-item5.jpg' %}" alt="Books" class="product-item">
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+									Cart</button>
+							</figure>
+							<figcaption>
+								<h3>Simple way of piece life</h3>
+								<span>Armor Ramsey</span>
+								<div class="item-price">
+									<span class="prev-price">$ 50.00</span>$ 40.00
+								</div>
+							</figcaption>
+						</div>
+
+						<div class="product-item">
+							<figure class="product-style">
+								<img src="{% static 'thrift/images/product-item6.jpg' %}" alt="Books" class="product-item">
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+									Cart</button>
+							</figure>
+							<figcaption>
+								<h3>Great travel at desert</h3>
+								<span>Sanchit Howdy</span>
+								<div class="item-price">
+									<span class="prev-price">$ 30.00</span>$ 38.00
+								</div>
+							</figcaption>
+						</div>
+
+						<div class="product-item">
+							<figure class="product-style">
+								<img src="{% static 'thrift/images/product-item7.jpg' %}" alt="Books" class="product-item">
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+									Cart</button>
+							</figure>
+							<figcaption>
+								<h3>The lady beauty Scarlett</h3>
+								<span>Arthur Doyle</span>
+								<div class="item-price">
+									<span class="prev-price">$ 35.00</span>$ 45.00
+								</div>
+							</figcaption>
+						</div>
+
+						<div class="product-item">
+							<figure class="product-style">
+								<img src="{% static 'thrift/images/product-item8.jpg' %}" alt="Books" class="product-item">
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+									Cart</button>
+							</figure>
+							<figcaption>
+								<h3>Once upon a time</h3>
+								<span>Klien Marry</span>
+								<div class="item-price">
+									<span class="prev-price">$ 25.00</span>$ 35.00
+								</div>
+							</figcaption>
+						</div>
+
+						<div class="product-item">
+							<figure class="product-style">
+								<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="Books" class="product-item">
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+									Cart</button>
+							</figure>
+							<figcaption>
+								<h3>Simple way of piece life</h3>
+								<span>Armor Ramsey</span>
+								<div class="item-price">$ 40.00</div>
+							</figcaption>
+						</div>
+					</div><!--grid-->
+				</div>
+			</div><!--inner-content-->
+		</div>
+	</div>
+</section>
+
+<section id="special-offer" class="bookshelf pb-5 mb-5">
+
+	<div class="section-header align-center">
+		<h2 class="section-title">Lord of Rings</h2>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="inner-content">
+				<div class="product-list" data-aos="fade-up">
+					<div class="grid product-grid">
+						<div class="product-item">
+							<figure class="product-style">
+								<img src="{% static 'thrift/images/product-item5.jpg' %}" alt="Books" class="product-item">
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+									Cart</button>
+							</figure>
+							<figcaption>
+								<h3>Simple way of piece life</h3>
+								<span>Armor Ramsey</span>
+								<div class="item-price">
+									<span class="prev-price">$ 50.00</span>$ 40.00
+								</div>
+							</figcaption>
+						</div>
+
+						<div class="product-item">
+							<figure class="product-style">
+								<img src="{% static 'thrift/images/product-item6.jpg' %}" alt="Books" class="product-item">
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+									Cart</button>
+							</figure>
+							<figcaption>
+								<h3>Great travel at desert</h3>
+								<span>Sanchit Howdy</span>
+								<div class="item-price">
+									<span class="prev-price">$ 30.00</span>$ 38.00
+								</div>
+							</figcaption>
+						</div>
+
+						<div class="product-item">
+							<figure class="product-style">
+								<img src="{% static 'thrift/images/product-item7.jpg' %}" alt="Books" class="product-item">
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+									Cart</button>
+							</figure>
+							<figcaption>
+								<h3>The lady beauty Scarlett</h3>
+								<span>Arthur Doyle</span>
+								<div class="item-price">
+									<span class="prev-price">$ 35.00</span>$ 45.00
+								</div>
+							</figcaption>
+						</div>
+
+						<div class="product-item">
+							<figure class="product-style">
+								<img src="{% static 'thrift/images/product-item8.jpg' %}" alt="Books" class="product-item">
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+									Cart</button>
+							</figure>
+							<figcaption>
+								<h3>Once upon a time</h3>
+								<span>Klien Marry</span>
+								<div class="item-price">
+									<span class="prev-price">$ 25.00</span>$ 35.00
+								</div>
+							</figcaption>
+						</div>
+
+						<div class="product-item">
+							<figure class="product-style">
+								<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="Books" class="product-item">
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+									Cart</button>
+							</figure>
+							<figcaption>
+								<h3>Simple way of piece life</h3>
+								<span>Armor Ramsey</span>
+								<div class="item-price">$ 40.00</div>
+							</figcaption>
+						</div>
+					</div><!--grid-->
+				</div>
+			</div><!--inner-content-->
+		</div>
+	</div>
+</section>
+
+<section id="subscribe">
+	<div class="container">
+		<div class="row justify-content-center">
+
+			<div class="col-md-8">
+				<div class="row">
+
+					<div class="col-md-6">
+
+						<div class="title-element">
+							<h2 class="section-title divider">Subscribe to our newsletter</h2>
+						</div>
+
+					</div>
+					<div class="col-md-6">
+
+						<div class="subscribe-content" data-aos="fade-up">
+							<p>Sed eu feugiat amet, libero ipsum enim pharetra hac dolor sit amet, consectetur. Elit
+								adipiscing enim pharetra hac.</p>
+							<form id="form">
+								<input type="text" name="email" placeholder="Enter your email addresss here">
+								<button class="btn-subscribe">
+									<span>send</span>
+									<i class="icon icon-send"></i>
+								</button>
+							</form>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+<footer id="footer">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-md-4">
+
+				<div class="footer-item">
+					<div class="company-brand">
+						<img src="{% static 'thrift/images/main-logo.png' %}" alt="logo" class="footer-logo">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis sed ptibus liberolectus
+							nonet psryroin. Amet sed lorem posuere sit iaculis amet, ac urna. Adipiscing fames
+							semper erat ac in suspendisse iaculis.</p>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-md-2">
+
+				<div class="footer-menu">
+					<h5>About Us</h5>
+					<ul class="menu-list">
+						<li class="menu-item">
+							<a href="#">vision</a>
+						</li>
+						<li class="menu-item">
+							<a href="#">articles </a>
+						</li>
+						<li class="menu-item">
+							<a href="#">careers</a>
+						</li>
+						<li class="menu-item">
+							<a href="#">service terms</a>
+						</li>
+						<li class="menu-item">
+							<a href="#">donate</a>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="col-md-2">
+
+				<div class="footer-menu">
+					<h5>Discover</h5>
+					<ul class="menu-list">
+						<li class="menu-item">
+							<a href="#">Home</a>
+						</li>
+						<li class="menu-item">
+							<a href="#">Books</a>
+						</li>
+						<li class="menu-item">
+							<a href="#">Authors</a>
+						</li>
+						<li class="menu-item">
+							<a href="#">Subjects</a>
+						</li>
+						<li class="menu-item">
+							<a href="#">Advanced Search</a>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="col-md-2">
+
+				<div class="footer-menu">
+					<h5>My account</h5>
+					<ul class="menu-list">
+						<li class="menu-item">
+							<a href="#">Sign In</a>
+						</li>
+						<li class="menu-item">
+							<a href="#">View Cart</a>
+						</li>
+						<li class="menu-item">
+							<a href="#">My Wishtlist</a>
+						</li>
+						<li class="menu-item">
+							<a href="#">Track My Order</a>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="col-md-2">
+
+				<div class="footer-menu">
+					<h5>Help</h5>
+					<ul class="menu-list">
+						<li class="menu-item">
+							<a href="#">Help center</a>
+						</li>
+						<li class="menu-item">
+							<a href="#">Report a problem</a>
+						</li>
+						<li class="menu-item">
+							<a href="#">Suggesting edits</a>
+						</li>
+						<li class="menu-item">
+							<a href="#">Contact us</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+{% endblock %}
