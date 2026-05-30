@@ -1,0 +1,19 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block main_body %}
+<section class="py-5" style="background: #f7f4ee; min-height: 100vh;">
+	<div class="container">
+		<div class="mb-4 pb-3 border-bottom">
+			<p class="text-uppercase fw-bold mb-1" style="letter-spacing: .14em; color: #8a6f55; font-size: 12px;">History</p>
+			<h1 class="mb-2">Previous Orders</h1>
+			<p class="mb-0 text-muted">All your purchased items will appear here.</p>
+		</div>
+
+		<div class="bg-white border rounded-3 p-4">
+			<h2 class="h5 mb-2">No previous orders yet</h2>
+			<p class="mb-0 text-muted">As soon as you buy something, your order history will show up here.</p>
+		</div>
+	</div>
+</section>
+{% endblock %}

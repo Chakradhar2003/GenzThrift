@@ -1,0 +1,87 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block main_body %}
+<section class="py-5" style="background: #f7f4ee; min-height: 100vh;">
+	<div class="container">
+		<div class="mb-4 pb-3 border-bottom">
+			<p class="text-uppercase fw-bold mb-1" style="letter-spacing: .14em; color: #8a6f55; font-size: 12px;">Selling</p>
+			<h1 class="mb-2">Previous Listed Items</h1>
+			<p class="mb-0 text-muted">Items you have posted for sale will appear here.</p>
+		</div>
+
+		{% if products %}
+			<div class="row g-4">
+				{% for product in products %}
+					<div class="col-md-6 col-lg-4">
+						<div class="bg-white border rounded-3 h-100 p-3">
+							{% with product.images.all as product_images %}
+								<div class="mb-3">
+									{% with product_images|first as main_image %}
+										{% if main_image %}
+											<img src="{{ main_image.image.url }}" alt="{{ product.title }}" class="img-fluid rounded-2 w-100 item-preview" style="aspect-ratio: 4 / 3; object-fit: cover;">
+										{% else %}
+											<div class="bg-light rounded-2 d-flex align-items-center justify-content-center w-100" style="aspect-ratio: 4 / 3;">
+												<span class="text-muted">No image</span>
+											</div>
+										{% endif %}
+									{% endwith %}
+								</div>
+
+								<div class="d-flex gap-2 overflow-auto pb-1 mb-3 item-thumb-row" style="scroll-snap-type: x proximity;">
+									{% for product_image in product_images %}
+										<button type="button" class="p-0 border-0 bg-transparent item-thumb flex-shrink-0" data-preview="{{ product_image.image.url }}" data-alt="{{ product.title }}">
+											<img src="{{ product_image.image.url }}" alt="{{ product.title }}" class="img-fluid rounded-2" style="width: 64px; height: 64px; object-fit: cover; scroll-snap-align: start;">
+										</button>
+									{% empty %}
+										<div class="bg-light rounded-2 d-flex align-items-center justify-content-center" style="width: 64px; height: 64px;">
+											<span class="text-muted small">No image</span>
+										</div>
+									{% endfor %}
+								</div>
+							{% endwith %}
+
+							<h2 class="h6 mb-2">{{ product.title }}</h2>
+							<p class="mb-2 text-muted small">{{ product.description|truncatechars:90 }}</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<span class="fw-semibold">Rs. {{ product.price }}</span>
+								<span class="badge bg-dark text-white">{{ product.get_condition_display }}</span>
+							</div>
+							<div class="mt-2">
+								<span class="badge bg-light text-dark border">{{ product.get_category_display }}</span>
+								<span class="badge {% if product.status == 'sold' %}bg-danger{% elif product.status == 'reserved' %}bg-warning text-dark{% else %}bg-success{% endif %}">
+									{{ product.get_status_display }}
+								</span>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+			<div class="bg-white border rounded-3 p-4">
+				<h2 class="h5 mb-2">No listed items yet</h2>
+				<p class="mb-0 text-muted">
+					Once you add products, you can review them here and track their status.
+				</p>
+			</div>
+		{% endif %}
+	</div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+	const thumbs = document.querySelectorAll('.item-thumb');
+
+	thumbs.forEach(function (thumb) {
+		thumb.addEventListener('click', function () {
+			const card = thumb.closest('.bg-white');
+			const preview = card ? card.querySelector('.item-preview') : null;
+			if (preview) {
+				preview.src = thumb.dataset.preview;
+				preview.alt = thumb.dataset.alt || '';
+			}
+		});
+	});
+});
+</script>
+{% endblock %}

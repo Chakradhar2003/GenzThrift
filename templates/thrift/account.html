@@ -1,0 +1,58 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block main_body %}
+<section class="py-5" style="background: #f7f4ee; min-height: 100vh;">
+	<div class="container">
+		<div class="mb-4 pb-3 border-bottom">
+			<p class="text-uppercase fw-bold mb-1" style="letter-spacing: .14em; color: #8a6f55; font-size: 12px;">My Account</p>
+			<h1 class="mb-2">Account Hub</h1>
+			<p class="mb-0 text-muted" style="max-width: 60ch;">
+				Choose what you want to manage.
+			</p>
+		</div>
+
+		<div class="row g-4">
+			<div class="col-md-6 col-lg-3">
+				<a href="{% url 'previous_orders' %}" class="text-decoration-none">
+					<div class="bg-white border rounded-3 p-4 h-100">
+						<p class="text-uppercase fw-bold mb-2" style="letter-spacing: .12em; color: #8a6f55; font-size: 12px;">History</p>
+						<h2 class="h4 mb-2 text-dark">Previous Orders</h2>
+						<p class="mb-0 text-muted">See everything you have bought.</p>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-6 col-lg-3">
+				<a href="{% url 'edit_user_information' %}" class="text-decoration-none">
+					<div class="bg-white border rounded-3 p-4 h-100">
+						<p class="text-uppercase fw-bold mb-2" style="letter-spacing: .12em; color: #8a6f55; font-size: 12px;">Profile</p>
+						<h2 class="h4 mb-2 text-dark">Edit User Information</h2>
+						<p class="mb-0 text-muted">Update your name, email, and phone.</p>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-6 col-lg-3">
+				<a href="{% url 'add_item' %}" class="text-decoration-none">
+					<div class="bg-white border rounded-3 p-4 h-100">
+						<p class="text-uppercase fw-bold mb-2" style="letter-spacing: .12em; color: #8a6f55; font-size: 12px;">Sell</p>
+						<h2 class="h4 mb-2 text-dark">ADD ITEM</h2>
+						<p class="mb-0 text-muted">List a new product for sale.</p>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-6 col-lg-3">
+				<a href="{% url 'previous_listed_items' %}" class="text-decoration-none">
+					<div class="bg-white border rounded-3 p-4 h-100">
+						<p class="text-uppercase fw-bold mb-2" style="letter-spacing: .12em; color: #8a6f55; font-size: 12px;">Selling</p>
+						<h2 class="h4 mb-2 text-dark">Previous Listed Items</h2>
+						<p class="mb-0 text-muted">Review items you have already posted.</p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

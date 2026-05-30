@@ -107,12 +107,19 @@ class Product(models.Model):
         ('accessories', 'Accessories')
     ]
 
+    STATUS_CHOICES = [
+        ('available', 'Available'),
+        ('reserved', 'Reserved'),
+        ('sold', 'Sold'),
+    ]
+
     seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='products')
     title = models.CharField(max_length=150)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
     condition = models.CharField(max_length=20, choices=CONDITION_CHOICES)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='available')
     brand = models.CharField(max_length=100, blank=True)
     size = models.CharField(max_length=50, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

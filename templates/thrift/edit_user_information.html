@@ -1,0 +1,42 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block main_body %}
+<section class="py-5" style="background: #f7f4ee; min-height: 100vh;">
+	<div class="container">
+		<div class="mb-4 pb-3 border-bottom">
+			<p class="text-uppercase fw-bold mb-1" style="letter-spacing: .14em; color: #8a6f55; font-size: 12px;">Profile</p>
+			<h1 class="mb-2">Edit User Information</h1>
+			<p class="mb-0 text-muted">Update your account details here.</p>
+		</div>
+
+		<div class="bg-white border rounded-3 p-4">
+			<form class="row g-3">
+				<div class="col-md-6">
+					<label class="form-label">First name</label>
+					<input type="text" class="form-control" value="{{ user.first_name }}">
+				</div>
+				<div class="col-md-6">
+					<label class="form-label">Last name</label>
+					<input type="text" class="form-control" value="{{ user.last_name }}">
+				</div>
+				<div class="col-md-6">
+					<label class="form-label">Email</label>
+					<input type="email" class="form-control" value="{{ user.email }}">
+				</div>
+				<div class="col-md-6">
+					<label class="form-label">Phone number</label>
+					<input type="text" class="form-control" value="{{ user.phone_number }}">
+				</div>
+				<div class="col-12">
+					<label class="form-label">Bio</label>
+					<textarea class="form-control" rows="4"></textarea>
+				</div>
+				<div class="col-12">
+					<button type="button" class="btn btn-dark px-4">Save changes</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+{% endblock %}
