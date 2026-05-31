@@ -1,0 +1,139 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block main_body %}
+<section class="product-detail-page py-5">
+	<div class="container">
+		<a href="{% url 'home' %}" class="product-back-link">Back to shop</a>
+
+		<div class="product-detail-layout">
+			<div class="product-detail-gallery">
+				{% with product.images.all as product_images %}
+					<div class="product-detail-photo-grid">
+						{% if product_images %}
+							<div class="product-detail-thumbs">
+								{% for product_image in product_images %}
+									<button type="button" class="product-detail-thumb {% if forloop.first %}is-active{% endif %}" data-preview="{{ product_image.image.url }}" data-alt="{{ product.title }}">
+										<img src="{{ product_image.image.url }}" alt="{{ product.title }} image {{ forloop.counter }}">
+									</button>
+								{% endfor %}
+							</div>
+						{% endif %}
+
+						<div class="product-detail-main-frame">
+							{% with product_images|first as main_image %}
+								{% if main_image %}
+									<img src="{{ main_image.image.url }}" alt="{{ product.title }}" class="product-detail-main-image" id="product-detail-main-image">
+								{% else %}
+									<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="{{ product.title }}" class="product-detail-main-image" id="product-detail-main-image">
+								{% endif %}
+							{% endwith %}
+						</div>
+					</div>
+				{% endwith %}
+			</div>
+
+			<div class="product-detail-info">
+				<p class="product-detail-category">{{ product.get_category_display }}</p>
+				<h1>{{ product.title }}</h1>
+				<div class="product-detail-price">Rs. {{ product.price }}</div>
+
+				<div class="product-detail-badges">
+					<span>{{ product.get_condition_display }}</span>
+					<span>{{ product.get_status_display }}</span>
+					{% if product.size %}
+						<span>Size {{ product.size }}</span>
+					{% endif %}
+					{% if product.brand %}
+						<span>{{ product.brand }}</span>
+					{% endif %}
+				</div>
+
+				<div class="product-detail-section">
+					<h2>Description</h2>
+					<p>{{ product.description }}</p>
+				</div>
+
+				<div class="product-detail-section">
+					<h2>Seller</h2>
+					<p>{{ product.seller.email }}</p>
+				</div>
+
+				{% if product.seller == user %}
+					<p class="product-detail-note">This is your listed item.</p>
+				{% elif product.status == 'sold' %}
+					<button type="button" class="btn btn-secondary" disabled>Sold</button>
+				{% else %}
+					<button type="button" class="btn btn-dark add-to-cart" data-url="{% url 'add_to_cart' product.id %}">
+						Add to Cart
+					</button>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+function getCookie(name) {
+	let cookieValue = null;
+	if (document.cookie && document.cookie !== '') {
+		const cookies = document.cookie.split(';');
+
+		for (let cookie of cookies) {
+			cookie = cookie.trim();
+			if (cookie.substring(0, name.length + 1) === (name + '=')) {
+				cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+				break;
+			}
+		}
+	}
+	return cookieValue;
+}
+
+document.querySelectorAll('.product-detail-thumb').forEach(function (thumb) {
+	thumb.addEventListener('click', function () {
+		const mainImage = document.getElementById('product-detail-main-image');
+		if (mainImage) {
+			mainImage.src = thumb.dataset.preview;
+			mainImage.alt = thumb.dataset.alt || '';
+		}
+
+		document.querySelectorAll('.product-detail-thumb').forEach(function (item) {
+			item.classList.remove('is-active');
+		});
+		thumb.classList.add('is-active');
+	});
+});
+
+document.querySelectorAll('.add-to-cart').forEach(function (button) {
+	button.addEventListener('click', async function () {
+		const response = await fetch(button.dataset.url, {
+			method: 'POST',
+			headers: {
+				'X-CSRFToken': getCookie('csrftoken'),
+				'X-Requested-With': 'XMLHttpRequest'
+			},
+			credentials: 'same-origin'
+		});
+
+		if (response.redirected) {
+			window.location.href = response.url;
+			return;
+		}
+
+		const contentType = response.headers.get('content-type') || '';
+		if (!contentType.includes('application/json')) {
+			alert('Could not add item to cart. Please try again.');
+			return;
+		}
+
+		const data = await response.json();
+		const cartCount = document.getElementById('cart-count');
+		if (cartCount && data.cart_item_count !== undefined) {
+			cartCount.textContent = data.cart_item_count;
+		}
+		alert(data.message);
+	});
+});
+</script>
+{% endblock %}

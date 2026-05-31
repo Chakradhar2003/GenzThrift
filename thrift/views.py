@@ -94,6 +94,15 @@ def home(request):
 
     return render(request, 'thrift/home.html', {'products_by_category': products_by_category})
 
+def product_detail(request, id):
+    product = get_object_or_404(
+        Product.objects.prefetch_related(
+            Prefetch('images', queryset=ProductImage.objects.order_by('uploaded_at'))
+        ),
+        id=id,
+    )
+    return render(request, 'thrift/product_detail.html', {'product': product})
+
 def account(request):
     return render(request, 'thrift/account.html')
 

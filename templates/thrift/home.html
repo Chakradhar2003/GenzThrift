@@ -82,19 +82,21 @@
 							{% for product in products_by_category.clothes %}
 								<div class="product-item carousel-card">
 									<figure class="product-style">
-										{% with product.images.all|first as product_image %}
-											{% if product_image %}
-												<img src="{{ product_image.image.url }}" alt="{{ product.title }}" class="product-item">
-											{% else %}
-												<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="{{ product.title }}" class="product-item">
-										{% endif %}
-									{% endwith %}
+										<a href="{% url 'product_detail' product.id %}" class="product-detail-link">
+											{% with product.images.all|first as product_image %}
+												{% if product_image %}
+													<img src="{{ product_image.image.url }}" alt="{{ product.title }}" class="product-item">
+												{% else %}
+													<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="{{ product.title }}" class="product-item">
+											{% endif %}
+										{% endwith %}
+										</a>
 									{% if product.seller != user %}
 										<button type="button" class="add-to-cart" data-url="{% url 'add_to_cart' product.id %}" data-product-tile="add-to-cart">Add to Cart</button>
 									{% endif %}
 								</figure>
 									<figcaption>
-										<h3>{{ product.title }}</h3>
+										<h3><a href="{% url 'product_detail' product.id %}">{{ product.title }}</a></h3>
 										<span>{{ product.get_condition_display }}</span>
 										<div class="item-price">Rs. {{ product.price }}</div>
 									</figcaption>
@@ -131,19 +133,21 @@
 							{% for product in products_by_category.footwear %}
 								<div class="product-item carousel-card">
 									<figure class="product-style">
-										{% with product.images.all|first as product_image %}
-											{% if product_image %}
-												<img src="{{ product_image.image.url }}" alt="{{ product.title }}" class="product-item">
-											{% else %}
-												<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="{{ product.title }}" class="product-item">
-										{% endif %}
-									{% endwith %}
+										<a href="{% url 'product_detail' product.id %}" class="product-detail-link">
+											{% with product.images.all|first as product_image %}
+												{% if product_image %}
+													<img src="{{ product_image.image.url }}" alt="{{ product.title }}" class="product-item">
+												{% else %}
+													<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="{{ product.title }}" class="product-item">
+											{% endif %}
+										{% endwith %}
+										</a>
 									{% if product.seller != user %}
 										<button type="button" class="add-to-cart" data-url="{% url 'add_to_cart' product.id %}" data-product-tile="add-to-cart">Add to Cart</button>
 									{% endif %}
 								</figure>
 									<figcaption>
-										<h3>{{ product.title }}</h3>
+										<h3><a href="{% url 'product_detail' product.id %}">{{ product.title }}</a></h3>
 										<span>{{ product.get_condition_display }}</span>
 										<div class="item-price">Rs. {{ product.price }}</div>
 									</figcaption>
@@ -180,19 +184,21 @@
 							{% for product in products_by_category.accessories %}
 								<div class="product-item carousel-card">
 									<figure class="product-style">
-										{% with product.images.all|first as product_image %}
-											{% if product_image %}
-												<img src="{{ product_image.image.url }}" alt="{{ product.title }}" class="product-item">
-											{% else %}
-												<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="{{ product.title }}" class="product-item">
-										{% endif %}
-									{% endwith %}
+										<a href="{% url 'product_detail' product.id %}" class="product-detail-link">
+											{% with product.images.all|first as product_image %}
+												{% if product_image %}
+													<img src="{{ product_image.image.url }}" alt="{{ product.title }}" class="product-item">
+												{% else %}
+													<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="{{ product.title }}" class="product-item">
+											{% endif %}
+										{% endwith %}
+										</a>
 									{% if product.seller != user %}
 										<button type="button" class="add-to-cart" data-url="{% url 'add_to_cart' product.id %}" data-product-tile="add-to-cart">Add to Cart</button>
 									{% endif %}
 								</figure>
 									<figcaption>
-										<h3>{{ product.title }}</h3>
+										<h3><a href="{% url 'product_detail' product.id %}">{{ product.title }}</a></h3>
 										<span>{{ product.get_condition_display }}</span>
 										<div class="item-price">Rs. {{ product.price }}</div>
 									</figcaption>

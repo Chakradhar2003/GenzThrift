@@ -36,6 +36,13 @@ class AddToCartTests(TestCase):
         self.assertTrue(response.json()['success'])
         self.assertEqual(CartItem.objects.filter(cart__user=self.buyer, product=self.product).count(), 1)
 
+    def test_product_detail_page_renders_product(self):
+        response = self.client.get(reverse('product_detail', args=[self.product.id]))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.product.title)
+        self.assertContains(response, self.product.description)
+
     def test_add_to_cart_does_not_duplicate_existing_item(self):
         self.client.login(email='buyer@example.com', password='testpass123')
 
