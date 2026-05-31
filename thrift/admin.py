@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User, Address, Product, ProductImage
+from .models import User, Address, Product, ProductImage, Cart, CartItem
 
 # Register your models here.
 @admin.register(User)
@@ -48,3 +48,15 @@ class ProductAdmin(admin.ModelAdmin):
 class ProductImageAdmin(admin.ModelAdmin):
     list_display = ('product', 'uploaded_at')
     search_fields = ('product__title',)
+
+
+@admin.register(Cart)
+class CartAdmin(admin.ModelAdmin):
+    list_display = ('user', 'created_at', 'updated_at')
+    search_fields = ('user__email',)
+
+
+@admin.register(CartItem)
+class CartItemAdmin(admin.ModelAdmin):
+    list_display = ('cart', 'product', 'added_at')
+    search_fields = ('cart__user__email', 'product__title')

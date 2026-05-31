@@ -89,13 +89,30 @@
         nextArrow: $('.next'),
     }); 
 
-    $('.product-grid').slick({
+    document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
+      const track = carousel.querySelector('[data-carousel-track]');
+      const prev = carousel.querySelector('[data-carousel-prev]');
+      const next = carousel.querySelector('[data-carousel-next]');
+
+      if (!track || !prev || !next) {
+        return;
+      }
+
+      const $track = $(track);
+
+      if ($track.hasClass('slick-initialized')) {
+        $track.slick('unslick');
+      }
+
+      $track.slick({
         slidesToShow: 4,
         slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        dots: true,
-        arrows: false,
+        autoplay: false,
+        dots: false,
+        arrows: true,
+        infinite: false,
+        prevArrow: $(prev),
+        nextArrow: $(next),
         responsive: [
           {
             breakpoint: 1400,
@@ -118,10 +135,8 @@
               slidesToScroll: 1
             }
           }
-          // You can unslick at a given breakpoint now by adding:
-          // settings: "unslick"
-          // instead of a settings object
         ]
+      });
     });
 
     AOS.init({

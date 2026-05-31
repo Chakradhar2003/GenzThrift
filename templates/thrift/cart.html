@@ -1,0 +1,71 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block main_body %}
+<section class="cart-page py-5">
+	<div class="container">
+		<div class="mb-4 pb-3 border-bottom">
+			<p class="text-uppercase fw-bold mb-1 cart-page-label">Shopping</p>
+			<h1 class="mb-2">Your Cart</h1>
+			<p class="mb-0 text-muted">Review the items you saved before checkout.</p>
+		</div>
+
+		{% if cart_items %}
+			<div class="cart-layout">
+				<div class="cart-items-list">
+					{% for item in cart_items %}
+						<div class="cart-item-row">
+							<div class="cart-item-image">
+								{% with item.product.images.all|first as product_image %}
+									{% if product_image %}
+										<img src="{{ product_image.image.url }}" alt="{{ item.product.title }}">
+									{% else %}
+										<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="{{ item.product.title }}">
+									{% endif %}
+								{% endwith %}
+							</div>
+
+							<div class="cart-item-details">
+								<h2>{{ item.product.title }}</h2>
+								<p class="text-muted mb-2">{{ item.product.description|truncatechars:110 }}</p>
+								<div class="cart-item-meta">
+									<span>{{ item.product.get_condition_display }}</span>
+									<span>{{ item.product.get_category_display }}</span>
+									<span>Added {{ item.added_at|date:"M d, Y" }}</span>
+								</div>
+							</div>
+
+							<div class="cart-item-price">
+								Rs. {{ item.product.price }}
+								<form action="{% url 'remove_from_cart' item.id %}" method="post" class="mt-2">
+									{% csrf_token %}
+									<button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+								</form>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+
+				<aside class="cart-summary">
+					<h2>Order Summary</h2>
+					<div class="cart-summary-line">
+						<span>Items</span>
+						<span>{{ cart_items|length }}</span>
+					</div>
+					<div class="cart-summary-line cart-summary-total">
+						<span>Total</span>
+						<span>Rs. {{ total_price }}</span>
+					</div>
+					<button type="button" class="btn btn-dark w-100 mt-3">Checkout</button>
+				</aside>
+			</div>
+		{% else %}
+			<div class="bg-white border rounded-3 p-4">
+				<h2 class="h5 mb-2">Your cart is empty</h2>
+				<p class="mb-3 text-muted">Items you add from the home page will appear here.</p>
+				<a href="{% url 'home' %}" class="btn btn-dark">Continue Shopping</a>
+			</div>
+		{% endif %}
+	</div>
+</section>
+{% endblock %}

@@ -4,6 +4,9 @@ from thrift import views
 
 urlpatterns = [
     path('', views.home, name="home"),
+    path('cart/', views.cart, name='cart'),
+    path('cart/remove/<int:id>/', views.remove_from_cart, name='remove_from_cart'),
+    path('cart/add/<int:id>/', views.add_to_cart, name='add_to_cart'),
     path('account', views.account, name='account'),
     path('account/previous-orders/', views.previous_orders, name='previous_orders'),
     path('account/edit-user-information/', views.edit_user_information, name='edit_user_information'),

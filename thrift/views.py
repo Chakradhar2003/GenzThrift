@@ -5,12 +5,13 @@ from django.db.models import Prefetch
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
-from .models import Product, ProductImage
+from .models import Product, ProductImage, Cart, CartItem
 from django.views.decorators.http import require_POST
 from pydantic import BaseModel, Field
 from google import genai
 from google.genai import types
-
+from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 class ItemDraft(BaseModel):
     title: str = Field(description="Short product title.")
@@ -75,7 +76,23 @@ def analyze_item_draft(request):
 
 # Create your views here.
 def home(request):
-    return render(request, 'thrift/home.html')
+    products = (
+        Product.objects
+        .prefetch_related(
+            Prefetch('images', queryset=ProductImage.objects.order_by('uploaded_at'))
+        )
+        .order_by('-created_at')
+    )
+    products_by_category = {
+        'clothes': [],
+        'footwear': [],
+        'accessories': [],
+    }
+
+    for product in products :
+        products_by_category[product.category].append(product)
+
+    return render(request, 'thrift/home.html', {'products_by_category': products_by_category})
 
 def account(request):
     return render(request, 'thrift/account.html')
@@ -85,6 +102,26 @@ def previous_orders(request):
 
 def edit_user_information(request):
     return render(request, 'thrift/edit_user_information.html')
+
+@login_required(login_url='login')
+def cart(request):
+
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    
+    cart_items = (
+        CartItem.objects
+        .filter(cart=cart)
+        .select_related('product')
+        .prefetch_related('product__images')
+        .order_by('-added_at')
+    )
+
+    total_price = sum(item.product.price for item in cart_items)
+    
+    return render(request, 'thrift/cart.html', {
+        'cart_items': cart_items,
+        'total_price': total_price,
+    })
 
 @login_required(login_url='login')
 def add_item(request):
@@ -131,3 +168,36 @@ def previous_listed_items(request):
 
 def about(request): 
     return HttpResponse('This is about')
+
+@login_required(login_url='login')
+@require_POST
+def add_to_cart(request, id):
+    product = get_object_or_404(Product, id=id)
+
+    if product.seller == request.user:
+        return JsonResponse({'success': False, 'message': 'You cannot add your own item to cart.'}, status=400)
+
+    if product.status == 'sold' :
+        return JsonResponse({'success': False, 'message': 'This item is already sold.'}, status=400)
+    
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+
+    if created:
+        message = f'{product.title} added to cart.'
+    else:
+        message = f'{product.title} is already in your cart.'
+
+    return JsonResponse({'success': True, 'message': message, 'cart_item_count': cart.cart_items.count()})
+    
+@login_required(login_url='login')
+@require_POST
+def remove_from_cart(request, id):
+    cart_item = get_object_or_404(CartItem, id=id, cart__user=request.user)
+    # Without it, one user could try to remove another user’s cart item by guessing the id.
+    cart_item.delete()
+    return redirect('cart')
+    
+
+        
+ 

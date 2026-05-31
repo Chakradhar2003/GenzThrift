@@ -64,270 +64,147 @@
 	</div>
 </section>
 
-<section id="special-offer" class="bookshelf pb-5 mb-5">
+<section id="clothing-offer" class="bookshelf pb-5 mb-5">
 
 	<div class="section-header align-center">
-		<h2 class="section-title">For the sneaky head</h2>
+		<h2 class="section-title">Clothing</h2>
 	</div>
 
 	<div class="container">
 		<div class="row">
 			<div class="inner-content">
 				<div class="product-list" data-aos="fade-up">
-					<div class="grid product-grid">
-						<div class="product-item">
-							<figure class="product-style">
-								<img src="{% static 'thrift/images/product-item5.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-									Cart</button>
-							</figure>
-							<figcaption>
-								<h3>Simple way of piece life</h3>
-								<span>Armor Ramsey</span>
-								<div class="item-price">
-									<span class="prev-price">$ 50.00</span>$ 40.00
+					<div class="category-carousel" data-carousel>
+						<button type="button" class="prev slick-arrow" data-carousel-prev aria-label="Previous clothing items">
+							<i class="icon icon-arrow-left"></i>
+						</button>
+						<div class="grid product-grid category-slider" data-carousel-track>
+							{% for product in products_by_category.clothes %}
+								<div class="product-item carousel-card">
+									<figure class="product-style">
+										{% with product.images.all|first as product_image %}
+											{% if product_image %}
+												<img src="{{ product_image.image.url }}" alt="{{ product.title }}" class="product-item">
+											{% else %}
+												<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="{{ product.title }}" class="product-item">
+										{% endif %}
+									{% endwith %}
+									{% if product.seller != user %}
+										<button type="button" class="add-to-cart" data-url="{% url 'add_to_cart' product.id %}" data-product-tile="add-to-cart">Add to Cart</button>
+									{% endif %}
+								</figure>
+									<figcaption>
+										<h3>{{ product.title }}</h3>
+										<span>{{ product.get_condition_display }}</span>
+										<div class="item-price">Rs. {{ product.price }}</div>
+									</figcaption>
 								</div>
-							</figcaption>
+							{% empty %}
+								<p class="text-center text-muted w-100">No clothing items yet.</p>
+							{% endfor %}
 						</div>
-
-						<div class="product-item">
-							<figure class="product-style">
-								<img src="{% static 'thrift/images/product-item6.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-									Cart</button>
-							</figure>
-							<figcaption>
-								<h3>Great travel at desert</h3>
-								<span>Sanchit Howdy</span>
-								<div class="item-price">
-									<span class="prev-price">$ 30.00</span>$ 38.00
-								</div>
-							</figcaption>
-						</div>
-
-						<div class="product-item">
-							<figure class="product-style">
-								<img src="{% static 'thrift/images/product-item7.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-									Cart</button>
-							</figure>
-							<figcaption>
-								<h3>The lady beauty Scarlett</h3>
-								<span>Arthur Doyle</span>
-								<div class="item-price">
-									<span class="prev-price">$ 35.00</span>$ 45.00
-								</div>
-							</figcaption>
-						</div>
-
-						<div class="product-item">
-							<figure class="product-style">
-								<img src="{% static 'thrift/images/product-item8.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-									Cart</button>
-							</figure>
-							<figcaption>
-								<h3>Once upon a time</h3>
-								<span>Klien Marry</span>
-								<div class="item-price">
-									<span class="prev-price">$ 25.00</span>$ 35.00
-								</div>
-							</figcaption>
-						</div>
-
-						<div class="product-item">
-							<figure class="product-style">
-								<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-									Cart</button>
-							</figure>
-							<figcaption>
-								<h3>Simple way of piece life</h3>
-								<span>Armor Ramsey</span>
-								<div class="item-price">$ 40.00</div>
-							</figcaption>
-						</div>
-					</div><!--grid-->
+						<button type="button" class="next slick-arrow" data-carousel-next aria-label="Next clothing items">
+							<i class="icon icon-arrow-right"></i>
+						</button>
+					</div>
 				</div>
-			</div><!--inner-content-->
+			</div>
 		</div>
 	</div>
 </section>
 
-<section id="special-offer" class="bookshelf pb-5 mb-5">
+<section id="footwear-offer" class="bookshelf pb-5 mb-5">
 
 	<div class="section-header align-center">
-		<h2 class="section-title">Best Fits</h2>
+		<h2 class="section-title">Footwear</h2>
 	</div>
 
 	<div class="container">
 		<div class="row">
 			<div class="inner-content">
 				<div class="product-list" data-aos="fade-up">
-					<div class="grid product-grid">
-						<div class="product-item">
-							<figure class="product-style">
-								<img src="{% static 'thrift/images/product-item5.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-									Cart</button>
-							</figure>
-							<figcaption>
-								<h3>Simple way of piece life</h3>
-								<span>Armor Ramsey</span>
-								<div class="item-price">
-									<span class="prev-price">$ 50.00</span>$ 40.00
+					<div class="category-carousel" data-carousel>
+						<button type="button" class="prev slick-arrow" data-carousel-prev aria-label="Previous footwear items">
+							<i class="icon icon-arrow-left"></i>
+						</button>
+						<div class="grid product-grid category-slider" data-carousel-track>
+							{% for product in products_by_category.footwear %}
+								<div class="product-item carousel-card">
+									<figure class="product-style">
+										{% with product.images.all|first as product_image %}
+											{% if product_image %}
+												<img src="{{ product_image.image.url }}" alt="{{ product.title }}" class="product-item">
+											{% else %}
+												<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="{{ product.title }}" class="product-item">
+										{% endif %}
+									{% endwith %}
+									{% if product.seller != user %}
+										<button type="button" class="add-to-cart" data-url="{% url 'add_to_cart' product.id %}" data-product-tile="add-to-cart">Add to Cart</button>
+									{% endif %}
+								</figure>
+									<figcaption>
+										<h3>{{ product.title }}</h3>
+										<span>{{ product.get_condition_display }}</span>
+										<div class="item-price">Rs. {{ product.price }}</div>
+									</figcaption>
 								</div>
-							</figcaption>
+							{% empty %}
+								<p class="text-center text-muted w-100">No footwear items yet.</p>
+							{% endfor %}
 						</div>
-
-						<div class="product-item">
-							<figure class="product-style">
-								<img src="{% static 'thrift/images/product-item6.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-									Cart</button>
-							</figure>
-							<figcaption>
-								<h3>Great travel at desert</h3>
-								<span>Sanchit Howdy</span>
-								<div class="item-price">
-									<span class="prev-price">$ 30.00</span>$ 38.00
-								</div>
-							</figcaption>
-						</div>
-
-						<div class="product-item">
-							<figure class="product-style">
-								<img src="{% static 'thrift/images/product-item7.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-									Cart</button>
-							</figure>
-							<figcaption>
-								<h3>The lady beauty Scarlett</h3>
-								<span>Arthur Doyle</span>
-								<div class="item-price">
-									<span class="prev-price">$ 35.00</span>$ 45.00
-								</div>
-							</figcaption>
-						</div>
-
-						<div class="product-item">
-							<figure class="product-style">
-								<img src="{% static 'thrift/images/product-item8.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-									Cart</button>
-							</figure>
-							<figcaption>
-								<h3>Once upon a time</h3>
-								<span>Klien Marry</span>
-								<div class="item-price">
-									<span class="prev-price">$ 25.00</span>$ 35.00
-								</div>
-							</figcaption>
-						</div>
-
-						<div class="product-item">
-							<figure class="product-style">
-								<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-									Cart</button>
-							</figure>
-							<figcaption>
-								<h3>Simple way of piece life</h3>
-								<span>Armor Ramsey</span>
-								<div class="item-price">$ 40.00</div>
-							</figcaption>
-						</div>
-					</div><!--grid-->
+						<button type="button" class="next slick-arrow" data-carousel-next aria-label="Next footwear items">
+							<i class="icon icon-arrow-right"></i>
+						</button>
+					</div>
 				</div>
-			</div><!--inner-content-->
+			</div>
 		</div>
 	</div>
 </section>
 
-<section id="special-offer" class="bookshelf pb-5 mb-5">
+<section id="accessories-offer" class="bookshelf pb-5 mb-5">
 
 	<div class="section-header align-center">
-		<h2 class="section-title">Lord of Rings</h2>
+		<h2 class="section-title">Accessories</h2>
 	</div>
 
 	<div class="container">
 		<div class="row">
 			<div class="inner-content">
 				<div class="product-list" data-aos="fade-up">
-					<div class="grid product-grid">
-						<div class="product-item">
-							<figure class="product-style">
-								<img src="{% static 'thrift/images/product-item5.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-									Cart</button>
-							</figure>
-							<figcaption>
-								<h3>Simple way of piece life</h3>
-								<span>Armor Ramsey</span>
-								<div class="item-price">
-									<span class="prev-price">$ 50.00</span>$ 40.00
+					<div class="category-carousel" data-carousel>
+						<button type="button" class="prev slick-arrow" data-carousel-prev aria-label="Previous accessories">
+							<i class="icon icon-arrow-left"></i>
+						</button>
+						<div class="grid product-grid category-slider" data-carousel-track>
+							{% for product in products_by_category.accessories %}
+								<div class="product-item carousel-card">
+									<figure class="product-style">
+										{% with product.images.all|first as product_image %}
+											{% if product_image %}
+												<img src="{{ product_image.image.url }}" alt="{{ product.title }}" class="product-item">
+											{% else %}
+												<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="{{ product.title }}" class="product-item">
+										{% endif %}
+									{% endwith %}
+									{% if product.seller != user %}
+										<button type="button" class="add-to-cart" data-url="{% url 'add_to_cart' product.id %}" data-product-tile="add-to-cart">Add to Cart</button>
+									{% endif %}
+								</figure>
+									<figcaption>
+										<h3>{{ product.title }}</h3>
+										<span>{{ product.get_condition_display }}</span>
+										<div class="item-price">Rs. {{ product.price }}</div>
+									</figcaption>
 								</div>
-							</figcaption>
+							{% empty %}
+								<p class="text-center text-muted w-100">No accessories yet.</p>
+							{% endfor %}
 						</div>
-
-						<div class="product-item">
-							<figure class="product-style">
-								<img src="{% static 'thrift/images/product-item6.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-									Cart</button>
-							</figure>
-							<figcaption>
-								<h3>Great travel at desert</h3>
-								<span>Sanchit Howdy</span>
-								<div class="item-price">
-									<span class="prev-price">$ 30.00</span>$ 38.00
-								</div>
-							</figcaption>
-						</div>
-
-						<div class="product-item">
-							<figure class="product-style">
-								<img src="{% static 'thrift/images/product-item7.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-									Cart</button>
-							</figure>
-							<figcaption>
-								<h3>The lady beauty Scarlett</h3>
-								<span>Arthur Doyle</span>
-								<div class="item-price">
-									<span class="prev-price">$ 35.00</span>$ 45.00
-								</div>
-							</figcaption>
-						</div>
-
-						<div class="product-item">
-							<figure class="product-style">
-								<img src="{% static 'thrift/images/product-item8.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-									Cart</button>
-							</figure>
-							<figcaption>
-								<h3>Once upon a time</h3>
-								<span>Klien Marry</span>
-								<div class="item-price">
-									<span class="prev-price">$ 25.00</span>$ 35.00
-								</div>
-							</figcaption>
-						</div>
-
-						<div class="product-item">
-							<figure class="product-style">
-								<img src="{% static 'thrift/images/product-item2.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-									Cart</button>
-							</figure>
-							<figcaption>
-								<h3>Simple way of piece life</h3>
-								<span>Armor Ramsey</span>
-								<div class="item-price">$ 40.00</div>
-							</figcaption>
-						</div>
-					</div><!--grid-->
+						<button type="button" class="next slick-arrow" data-carousel-next aria-label="Next accessories">
+							<i class="icon icon-arrow-right"></i>
+						</button>
+					</div>
 				</div>
 			</div><!--inner-content-->
 		</div>
@@ -370,4 +247,56 @@
 		</div>
 	</div>
 </section>
+<script>
+function getCookie(name) {
+	let cookieValue = null;
+	if(document.cookie && document.cookie !=='') {
+		const cookies = document.cookie.split(';');
+
+		for(let cookie of cookies) {
+			cookie = cookie.trim();
+			if(cookie.substring(0, name.length + 1) === (name + '=')) {
+				cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+				break;
+			}
+		}
+	}
+	return cookieValue;
+}
+
+
+document.querySelectorAll('.add-to-cart').forEach(function (button) {
+    button.addEventListener('click', async function () {
+        const url = button.dataset.url;
+        const csrfToken = getCookie('csrftoken');
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken,
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            credentials: 'same-origin'
+        });
+
+        if (response.redirected) {
+            window.location.href = response.url;
+            return;
+        }
+
+        const contentType = response.headers.get('content-type') || '';
+        if (!contentType.includes('application/json')) {
+            alert('Could not add item to cart. Please try again.');
+            return;
+        }
+
+        const data = await response.json();
+		const cartCount = document.getElementById('cart-count');
+		if (cartCount && data.cart_item_count !== undefined) {
+			cartCount.textContent = data.cart_item_count;
+		}
+        alert(data.message);
+    });
+});
+</script>
 {% endblock %}
